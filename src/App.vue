@@ -1,10 +1,8 @@
 <template>
   <div>
-    <app-header v-bind:title="title"></app-header>
+    <app-header v-bind:title="title" v-on:changeTitle="updateTitle($event)"></app-header>
     <app-ninjas v-bind:ninjas='ninjas'></app-ninjas>
-    
-    <app-ninjas v-bind:ninjas='ninjas'></app-ninjas>
-
+    <button v-on:click="changeTitleLocal">Change Title Local</button>
     <app-footer v-bind:title="title"></app-footer>
   </div>
 </template>
@@ -31,6 +29,14 @@ export default {
           {name: 'Yoshi', speciality: 'Data Diggin', show: false}
       ],
       title: "Vue Ninjas"
+    }
+  },
+  methods:{
+    updateTitle:function(updatedTitle){
+        this.title=updatedTitle;
+    },
+    changeTitleLocal:function(){
+      this.title = "WTF IT WORKED";
     }
   }
 }
