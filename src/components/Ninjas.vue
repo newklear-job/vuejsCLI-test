@@ -1,12 +1,12 @@
 <template>
     <div id="ninjas">
-      {{this.ninjas}}
         <ul>
             <li v-for="ninja in ninjas" v-on:click="ninja.show = !ninja.show">
                 <h2>{{ ninja.name }}</h2>
                 <h3 v-show="ninja.show">{{ ninja.speciality }}</h3>
             </li>
         </ul>
+        <button v-on:click="deleteNinja">Delete Ninja</button>
     </div>
 </template>
 
@@ -24,8 +24,8 @@ export default {
         }
     },
     methods:{
-      test:function(){
-        this.ninjas
+      deleteNinja:function(){
+        this.ninjas.pop();
       }
     }
 }
