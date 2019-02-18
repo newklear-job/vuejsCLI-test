@@ -5,17 +5,22 @@
 </template>
 
 <script>
-
+import {bus} from '../main';
 export default {
-props:{
-  title:{
-    type:String
-  }
-},
+  props:{
+    title:{
+      type:String
+    }
+  },
   data(){
     return {
       copyright: 'Copyright 2017 '
     }
+  },
+  created(){
+    bus.$on('titleChanged', (data) => {
+      this.title = data;
+    })
   }
 }
 </script>

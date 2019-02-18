@@ -1,6 +1,7 @@
 <template>
   <div>
     <app-header v-bind:title="title" v-on:changeTitle="updateTitle($event)"></app-header>
+    <h1 style="text-align:center">{{title}} - root title</h1>
     <app-ninjas v-bind:ninjas='ninjas'></app-ninjas>
     <button v-on:click="changeTitleLocal">Change Title Local</button>
     <app-footer v-bind:title="title"></app-footer>
