@@ -1,12 +1,16 @@
 <template>
-  <div>
+<div>
 <h2>Add a new Blog Post</h2>
 <form>
-  <label>Blog Title:</label>
+  <div id="text">
+
+
+    <label>Blog Title:</label>
     <input type="text" v-model.lazy="blog.title" required/>
     <label>Blog Content:</label>
     <textarea v-model="blog.content"></textarea>
-    <div id="checkboxes">
+  </div>
+  <div id="checkboxes">
       <label>Ninjas</label>
       <input type="checkbox" value="ninjas" v-model="blog.categories"/>
 
@@ -18,7 +22,14 @@
 
       <label>Cheese</label>
       <input type="checkbox" value="cheese" v-model="blog.categories"/>
-    </div>
+  </div>
+
+  <div id="selects">
+    <label>Author:</label>
+    <select v-model="blog.author">
+      <option v-for="author in authors">{{author}}</option>
+    </select>
+  </div>
 </form>
 <div id="preview">
 <h3>Preview Blog</h3>
@@ -29,6 +40,7 @@
 <ul>
   <li v-for="category in blog.categories">{{category}}</li>
 </ul>
+<p>Author: {{blog.author}}</p>
 </div>
   </div>
 </template>
@@ -42,8 +54,10 @@ export default {
         blog:{
           title:'',
           content:'',
-          categories: []
-        }
+          categories: [],
+          author: ''
+        },
+        authors:['Vitalik', 'The Angular Avenger', 'Mario', 'Ninja']
     }
   }
 
