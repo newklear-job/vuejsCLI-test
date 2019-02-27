@@ -4,7 +4,7 @@
     <input type="text" v-model="search" placeholder="Search blogs"/>
     <div v-for="blog in filteredBlogs" class="single-blog">
       <router-link v-bind:to="'/blog/' + blog.id"><h2 v-rainbow>{{blog.title | to-uppercase}}</h2></router-link>
-      <article>{{blog.body | snippet }}</article>
+      <article>{{blog.content | snippet }}</article>
 
     </div>
 
@@ -22,8 +22,16 @@ export default {
     }
   },
   created(){
-    this.$http.get('https://jsonplaceholder.typicode.com/posts').then(function(data){
-      this.blogs = data.body.slice(0,10);
+    this.$http.get('https://vuejscli-test.firebaseio.com/posts.json').then(function(data){
+      return data.json()
+    }).then(function(data){
+      // var blogsArray = [];
+      for (let key in data){
+        data[key].id = key;
+        this.blogs.push(data[key]);
+      }
+      // this.blogs = blogsArray;
+      // console.log(this.blogs);
     });
   },
   computed: {
